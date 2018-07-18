@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 // Imports
 const fs = require('fs');
 const recursive = require('recursive-readdir');
