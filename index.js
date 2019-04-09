@@ -19,26 +19,24 @@ const getDirectorySize = (directory) => {
     });
 }
 
-const formatResult = (size, files) => {
+const isMoreThanZero = (num = 0) => Number(num.toFixed(2)) > 0;
+
+const formatResult = (size, files = 0) => {
   const inKB = (size / 1024);
   const inMB = (inKB / 1024);
   const inGB = (inMB / 1024);
 
-  const gbIsNotZero = (Number(inGB.toFixed(2)) > 0);
-  const mbIsNotZero = (Number(inMB.toFixed(2)) > 0);
-  const kbIsNotZero = (Number(inKB.toFixed(2)) > 0);
-
   console.log();
 
-  if (gbIsNotZero) {
+  if (isMoreThanZero(inGB)) {
     console.log('\t', `${inGB.toFixed(2)}`.red, 'GB'.green);
   }
 
-  if (mbIsNotZero) {
+  if (isMoreThanZero(inMB)) {
     console.log('\t', `${inMB.toFixed(2)}`.red, 'MB'.green);
   }
 
-  if (kbIsNotZero) {
+  if (isMoreThanZero(inKB)) {
     console.log('\t', `${inKB.toFixed(2)}`.red, 'KB'.green);
   }
 
@@ -52,9 +50,10 @@ const formatResult = (size, files) => {
 };
 
 // ======
-// App
+// Main
 // ======
 
+// Get dir or file name from arguments
 const TARGET = process.argv[2];
 
 if (fs.lstatSync(TARGET).isDirectory()) {
