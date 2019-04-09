@@ -24,12 +24,30 @@ const formatResult = (size, files) => {
   const inMB = (inKB / 1024);
   const inGB = (inMB / 1024);
 
+  const gbIsNotZero = (Number(inGB.toFixed(2)) > 0);
+  const mbIsNotZero = (Number(inMB.toFixed(2)) > 0);
+  const kbIsNotZero = (Number(inKB.toFixed(2)) > 0);
+
   console.log();
-  (Number(inGB.toFixed(2)) > 0) ? console.log('\t', `${inGB.toFixed(2)}`.red, 'GB'.green) : null;
-  console.log('\t', `${inMB.toFixed(2)}`.red, 'MB'.green);
-  console.log('\t', `${inKB.toFixed(2)}`.red, 'KB'.green);
+
+  if (gbIsNotZero) {
+    console.log('\t', `${inGB.toFixed(2)}`.red, 'GB'.green);
+  }
+
+  if (mbIsNotZero) {
+    console.log('\t', `${inMB.toFixed(2)}`.red, 'MB'.green);
+  }
+
+  if (kbIsNotZero) {
+    console.log('\t', `${inKB.toFixed(2)}`.red, 'KB'.green);
+  }
+
   console.log('\t', `${size}`.red, 'bytes'.green);
-  files ? console.log('\t', `${files} total files inside.`.yellow) : null;
+
+  if (files) {
+    console.log('\t', `${files} total files inside.`.yellow)
+  }
+
   console.log();
 };
 
