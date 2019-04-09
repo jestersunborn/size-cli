@@ -19,7 +19,7 @@ yarn global add size-cli
 ## Usage
 
 ```bash
-size [Directory/File]
+size <Directory/File>
 ```
 
 e.g:
